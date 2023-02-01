@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -19,23 +20,37 @@
   <body>
     <div class="header"></div>
     <main>
-        <h1>We are evil</h1>
-        <div class="inputs">
-          <label for="filter" class="form-label">Route:</label>
+        <h1>>:)</h1>
+        <!-- <div class="inputs">
+          <label for="filter" class="form-label">Location:</label>
           <input type="text" class="form-control" id="filter">
-          <button class="btn btn-success" id="start">Start</button>
-          <button class="btn btn-danger disabled" id="stop">Stop</button>
+          <button class="btn btn-success" id="start">Search</button> -->
+          <!-- <button class="btn btn-danger disabled" id="stop">Stop</button> -->
         </div>
-        <div id="mapID"></div>
-        <div id="error"></div>
-        <div>
+        <!-- <div id="mapID"></div>
+        <div id="error"></div> -->
+        <!-- <div>
           <h4>Results Data</h4>
           <div class="table-responsive">
             <table id="table1" class="table">
             </table>
           </div>
+        </div> -->
+        <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Search Box"
+      />
+
+        <div id="map">
+
         </div>
     </main>
 	<script src="index.js"></script>
+  <script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+  defer
+></script>
   </body>
 </html>

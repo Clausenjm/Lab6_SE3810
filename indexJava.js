@@ -6,6 +6,11 @@ let interval = ""; // The interval storage
 let isON = false; // Is the program running?
 
 window.onload = () => {
+
+
+
+
+
     // Initialize the map
     map = L.map('mapID').setView([43.04391143798828,-87.91095932006836], 11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -17,6 +22,28 @@ window.onload = () => {
     document.getElementById("stop").onclick = toggleBus;
 }
 
+
+// Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    const uluru = { lat:  35.66900634889589, lng: 139.77887951691656};
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: uluru,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+    });
+  }
+
+
+
+
+
+  
 /**
  * Fetches the data from the MCTS server and gives the corresponding error message if needed
  * Otherwise will proceed to displaying information
