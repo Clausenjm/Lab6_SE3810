@@ -1,0 +1,162 @@
+/* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+ #map {
+    height: 1000px;
+    width: 800px;
+    display:block;
+    float:left;
+  }
+  
+  /* 
+   * Optional: Makes the sample page fill the window. 
+   */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+  
+  #infowindow-content {
+    display: none;
+  }
+  
+  #map #infowindow-content {
+    
+    max-width: 100px;
+  }
+  
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    font-family: Roboto;
+    padding: 0;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+  
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  
+  #target {
+    width: 345px;
+  }
+
+  .phone {
+    display: inline-block;
+    /* display: column;
+    justify-content: center;
+    max-width: 700px;
+    max-height: 900px; */
+    
+   
+  }
+
+/* 
+  #container {
+    height: 100%;
+    display: flex;
+  } */
+
+  #sidebar {
+    display:block;
+    float:left;
+  }
+
+  button {
+    width: 100%;
+    padding: 1rem;
+    flex-grow: 0;
+    cursor: pointer;
+    background: #1a73e8;
+    font-size: 1.5rem;
+    color: white;
+    border: none;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: scroll !important;
+    flex-grow: 1;
+    max-height: 500px;
+  }
+
+  
+  
+  li {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  li:hover{
+    background-color: wheat;
+  }
+
+  li:nth-child(odd) {
+    background-color: #fcfcfc;
+  }
+  li:nth-child(odd):hover {
+    background-color: wheat;
+  }
+
+  #places :hover{
+    color: red !important;
+  }

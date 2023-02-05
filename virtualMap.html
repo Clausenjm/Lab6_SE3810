@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Places Search Box</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./virtualMap.css" />
+    <script  src="./virtualMap.js"></script>
+  </head>
+  <body>
+    <div class="phone">
+
+        <!-- <div id="container">
+            <div id="map"></div>
+            <div id="sidebar">
+              <h2>Results</h2>
+              <ul id="places"></ul>
+              <button id="more">Load more results</button>
+            </div>
+          </div> -->
+    <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+    <div id="map"></div>
+    <div id="sidebar">
+      <h2>Results</h2>
+      <ul id="places"></ul>
+      <button id="more">Load more results</button>
+    </div>
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
+</div>
+  </body>
+</html>
+
