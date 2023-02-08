@@ -4,9 +4,24 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-35.68294148822643, 139.76663189057422
-function initAutocomplete() {
-  const pyrmont = { lat: 35.68294148822643, lng: 139.76663189057422 };
+
+ async function  initAutocomplete() {
+  let temp1 = 35.68294148822643;
+  let temp2 = 139.76663189057422;
+  document.getElementById("currentLong").innerText = "Long: "+temp1;
+  document.getElementById("currentLat").innerText = "Lat: "+temp2;
+  document.getElementById("personButton").addEventListener("click", ()=>{
+    console.log("RED")
+    temp1 = document.getElementById("lon").value;
+    temp2 = document.getElementById("lat").value;
+    console.log(temp1);
+    console.log(temp2);
+    document.getElementById("currentLong").innerText = "Long: "+temp1;
+    document.getElementById("currentLat").innerText = "Lat: "+temp2;
+
+  })
+
+  const pyrmont = { lat: temp1, lng: temp2 };
     const map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: 35.68294148822643, lng: 139.76663189057422 },
       zoom: 18,
@@ -26,54 +41,57 @@ function initAutocomplete() {
   
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
-    searchBox.addListener("places_changed", () => {
-      const places = searchBox.getPlaces();
-  
-      if (places.length == 0) {
-        return;
-      }
-  
-      // Clear out the old markers.
-      markers.forEach((marker) => {
-        marker.setMap(null);
-      });
-      markers = [];
-  
-      // For each place, get the icon, name and location.
-      const bounds = new google.maps.LatLngBounds();
-  
-      places.forEach((place) => {
-        if (!place.geometry || !place.geometry.location) {
-          console.log("Returned place contains no geometry");
+      searchBox.addListener("places_changed", () => {
+       
+        const places = searchBox.getPlaces();
+    
+        if (places.length == 0) {
           return;
         }
-  
-        const icon = {
-          url: place.icon,
-          size: new google.maps.Size(71, 71),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(17, 34),
-          scaledSize: new google.maps.Size(25, 25),
-        };
-  
-        // Create a marker for each place.
-        markers.push(
-          new google.maps.Marker({
-            map,
-            icon,
-            title: place.name,
-            position: place.geometry.location,
-          })
-        );
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
+    
+        // Clear out the old markers.
+        markers.forEach((marker) => {
+          marker.setMap(null);
+        });
+        markers = [];
+    
+        // For each place, get the icon, name and location.
+        const bounds = new google.maps.LatLngBounds();
+    
+        places.forEach((place) => {
+          if (!place.geometry || !place.geometry.location) {
+            console.log("Returned place contains no geometry");
+            return;
+          }
+    
+          const icon = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25),
+          };
+    
+          // Create a marker for each place.
+          markers.push(
+            new google.maps.Marker({
+              map,
+              icon,
+              title: place.name,
+              position: place.geometry.location,
+            })
+          );
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
+        });
+        map.fitBounds(bounds);
+
+       
       });
-      map.fitBounds(bounds);
-    });
 
       // Create the places service.
   const service = new google.maps.places.PlacesService(map);
@@ -88,6 +106,7 @@ function initAutocomplete() {
     }
   };
       // Perform a nearby search.
+     
   service.nearbySearch(
     { location: pyrmont, radius: 500, type: "store" },
     (results, status, pagination) => {
@@ -104,9 +123,13 @@ function initAutocomplete() {
     }
   );
 
-  }
+
   
-  function addPlaces(places, map) {
+  }
+
+
+  async function addPlaces(places, map) {
+    const start = Date.now();
     const placesList = document.getElementById("places");
   
     for (const place of places) {
@@ -135,7 +158,13 @@ function initAutocomplete() {
         });
       }
     }
+    const end = Date.now();
+    console.log(`Execution time: ${end - start} ms`);
+    document.getElementById("time").innerText = `Execution time: ${end - start} ms`;
   }
+  
+
+
   
 
   window.initAutocomplete = initAutocomplete;
