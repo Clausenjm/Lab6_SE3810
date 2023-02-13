@@ -5,9 +5,12 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+let temp1 = 35.68294148822643;
+let temp2 = 139.76663189057422;
+
  async function  initAutocomplete() {
-  let temp1 = 35.68294148822643;
-  let temp2 = 139.76663189057422;
+  const start = Date.now();
+  
   document.getElementById("currentLong").innerText = "Long: "+temp1;
   document.getElementById("currentLat").innerText = "Lat: "+temp2;
   document.getElementById("personButton").addEventListener("click", ()=>{
@@ -100,7 +103,7 @@
 
 
   moreButton.onclick = function () {
-    moreButton.disabled = true;
+    // moreButton.disabled = true;
     if (getNextPage) {
       getNextPage();
     }
@@ -108,12 +111,12 @@
       // Perform a nearby search.
      
   service.nearbySearch(
-    { location: pyrmont, radius: 500, type: "store" },
+    { location: { lat: temp1, lng: temp2 }, radius: 100000, type: "store" },
     (results, status, pagination) => {
       if (status !== "OK" || !results) return;
 
       addPlaces(results, map);
-      moreButton.disabled = !pagination || !pagination.hasNextPage;
+      // moreButton.disabled = !pagination || !pagination.hasNextPage;
       if (pagination && pagination.hasNextPage) {
         getNextPage = () => {
           // Note: nextPage will call the same handler function as the initial call
@@ -123,7 +126,8 @@
     }
   );
 
-
+  const end = Date.now();
+  console.log(`Page Execution time: ${end - start} ms`);
   
   }
 
