@@ -7,7 +7,7 @@
 
 let temp1 = 35.68294148822643;
 let temp2 = 139.76663189057422;
-
+let globe = Date.now();
  async function  initAutocomplete() {
   const start = Date.now();
   
@@ -113,6 +113,7 @@ let temp2 = 139.76663189057422;
   service.nearbySearch(
     { location: { lat: temp1, lng: temp2 }, radius: 100000, type: "store" },
     (results, status, pagination) => {
+      const start1 = Date.now();
       if (status !== "OK" || !results) return;
 
       addPlaces(results, map);
@@ -123,9 +124,11 @@ let temp2 = 139.76663189057422;
           pagination.nextPage();
         };
       }
+      const end1 = Date.now();
+  console.log(`STOREIN: ${end1 - globe} ms`);
     }
   );
-
+  
   const end = Date.now();
   console.log(`Page Execution time: ${end - start} ms`);
   
@@ -163,8 +166,8 @@ let temp2 = 139.76663189057422;
       }
     }
     const end = Date.now();
-    console.log(`Execution time: ${end - start} ms`);
-    document.getElementById("time").innerText = `Execution time: ${end - start} ms`;
+    console.log(`Stores: ${end - globe} ms`);
+   // document.getElementById("time").innerText = `Execution time: ${end - start} ms`;
   }
   
 
